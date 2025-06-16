@@ -25,6 +25,7 @@ builder.Services.AddDbContext<FleetManagementContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
            .LogTo(Console.WriteLine, LogLevel.Information));
 
+builder.Services.AddAuthentication();
 builder.Services.AddIdentity<Employee, IdentityRole>(options =>
 {
     // You can enable this as per your password policy requirements later
@@ -66,6 +67,7 @@ if (app.Environment.IsDevelopment())
 // Use CORS policy
 app.UseCors("AllowAll");
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

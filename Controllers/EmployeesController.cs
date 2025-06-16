@@ -38,32 +38,32 @@ public class EmployeeController : ControllerBase
         return Ok(employee);
     }
 
-    // POST: api/employee
-    [HttpPost]
-    public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
-    {
-        if (employee == null)
-        {
-            return BadRequest("Invalid employee data.");
-        }
+    //// POST: api/employee
+    //[HttpPost]
+    //public async Task<IActionResult> CreateEmployee([FromBody] Employee employee)
+    //{
+    //    if (employee == null)
+    //    {
+    //        return BadRequest("Invalid employee data.");
+    //    }
 
-        // Hash the password before saving
-        //employee.PasswordHash = BCrypt.Net.BCrypt.HashPassword(employee.PasswordHash);
+    //    // Hash the password before saving
+    //    //employee.PasswordHash = BCrypt.Net.BCrypt.HashPassword(employee.PasswordHash);
 
-        //_context.Employees.Add(employee);
-        //_context.SaveChanges();
+    //    //_context.Employees.Add(employee);
+    //    //_context.SaveChanges();
 
-        var user = await _context.FindByNameAsync(employee.UserName);
-        if (user != null) 
-            return BadRequest($"The username {employee.UserName} has been already taken");
+    //    var user = await _context.FindByNameAsync(employee.UserName);
+    //    if (user != null) 
+    //        return BadRequest($"The username {employee.UserName} has been already taken");
 
-        var identityResult = await _context.CreateAsync(employee, employee.PasswordHash);
+    //    var identityResult = await _context.CreateAsync(employee, employee.PasswordHash);
 
-        if (!identityResult.Succeeded)
-            return BadRequest("Registration unsuccessful");
+    //    if (!identityResult.Succeeded)
+    //        return BadRequest("Registration unsuccessful");
 
-        return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
-    }
+    //    return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee);
+    //}
 
     // PUT: api/employee/{id}
     [HttpPut("{id}")]
