@@ -29,12 +29,15 @@ public class AuthController : ControllerBase
         // Check if the user already exists
         var existingUser = await _context.FindByNameAsync(employee.UserName);
         if (existingUser != null)
-        {
             return BadRequest("User already exists");
-        }
+
         // Set default values for the new user
         employee.IsActive = true;
         employee.LastLoginDate = DateTime.UtcNow;
+
+        //Setting up a unique email if not provided
+        if (employee.Email == null || employee.Email.Trim() == "")
+            employee.Email = employee.UserName.Contains('@')? employee.UserName: $"{employee.UserName}@mail.com";
 
         var entity =  _mapper.Map<Employee>(employee);
 
