@@ -2,6 +2,7 @@
 using FleetManagementAPI.Data;
 using FleetManagementAPI.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace FleetManagementAPI.Controllers // No modifier before "namespace"
 {
@@ -38,17 +39,19 @@ namespace FleetManagementAPI.Controllers // No modifier before "namespace"
 
         // POST: api/UnitOfMeasure
         [HttpPost]
-        public IActionResult AddUnitOfMeasure([FromBody] UnitOfMeasure unit)
+        public async Task<IActionResult> AddUnitOfMeasure([FromBody] UnitOfMeasure unit)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.UnitsOfMeasure.Add(unit);
-            _context.SaveChanges();
+            await _context.UnitsOfMeasure.AddAsync(unit);
+            await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUnitOfMeasure), new { id = unit.Id }, unit);
+            return Ok(unit);
+
+            //return CreatedAtAction(nameof(GetUnitOfMeasure), new { id = unit.Id }, unit);
         }
 
         // PUT: api/UnitOfMeasure/{id}
