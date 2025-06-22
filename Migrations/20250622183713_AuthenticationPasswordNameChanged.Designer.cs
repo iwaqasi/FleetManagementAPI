@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FleetManagementAPI.Migrations
 {
     [DbContext(typeof(FleetManagementContext))]
-    [Migration("20250616064110_test")]
-    partial class test
+    [Migration("20250622183713_AuthenticationPasswordNameChanged")]
+    partial class AuthenticationPasswordNameChanged
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

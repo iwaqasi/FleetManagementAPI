@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FleetManagementAPI.Data;
 using FleetManagementAPI.Models;
-using System.Security.Cryptography;
-using BCrypt.Net;
 using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
@@ -79,6 +76,7 @@ public class EmployeeController : ControllerBase
         if (updatedEmployee.FirstName != null) existingEmployee.FirstName = updatedEmployee.FirstName;
         if (updatedEmployee.LastName != null) existingEmployee.LastName = updatedEmployee.LastName;
         if (updatedEmployee.UserName != null) existingEmployee.UserName = updatedEmployee.UserName;
+        if (updatedEmployee.PhoneNumber != null) existingEmployee.PhoneNumber = updatedEmployee.PhoneNumber;
         if (updatedEmployee.PasswordHash != null) existingEmployee.PasswordHash = updatedEmployee.PasswordHash;
         if (updatedEmployee.EmployeeCode != null) existingEmployee.EmployeeCode = updatedEmployee.EmployeeCode;
         if (updatedEmployee.EmployeeType != null) existingEmployee.EmployeeType = updatedEmployee.EmployeeType;

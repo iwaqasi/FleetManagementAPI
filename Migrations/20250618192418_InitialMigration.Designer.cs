@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FleetManagementAPI.Migrations
 {
     [DbContext(typeof(FleetManagementContext))]
-    [Migration("20250615171651_InitialMigration")]
+    [Migration("20250618192418_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -119,7 +119,6 @@ namespace FleetManagementAPI.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -138,7 +137,6 @@ namespace FleetManagementAPI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -156,7 +154,8 @@ namespace FleetManagementAPI.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.HasIndex("UserName")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
 

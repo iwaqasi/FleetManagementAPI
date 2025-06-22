@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
         var entity =  _mapper.Map<Employee>(employee);
 
         // Create the user
-        var result = await _context.CreateAsync(entity, employee.Password);
+        var result = await _context.CreateAsync(entity, employee.PasswordHash);
         if (!result.Succeeded)
         {
             return BadRequest(result.Errors);
