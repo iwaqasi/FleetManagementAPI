@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using FleetManagementAPI.Data;
+// using FleetManagementAPI.Data;
 using FleetManagementAPI.DTOs;
 using FleetManagementAPI.Models;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/[controller]")]
